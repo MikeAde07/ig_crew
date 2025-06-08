@@ -3,6 +3,8 @@ import json
 import os
 
 from langchain.tools import tool
+from langchain_community.document_loaders import WebBaseLoader
+
 
 class SearchTools:
 
@@ -20,9 +22,17 @@ class SearchTools:
         """
         Use this tool to search Instagram. This tool returns 5 results from Instagram pages.
         """
-        return SearchTools.search(f"site:instagram.com{query}", limit=5)
+        return SearchTools.search(f"site:instagram.com {query}", limit=5)
 
-       
+    
+    @tool('open page')
+    def open_page(url:str) -> str:
+        """
+        Use the tool to open a webpage and get the content.
+        """
+        loader = WebBaseLoader(url)
+        return loader.load()
+
 
     def search(query, limit=5):
         
@@ -47,3 +57,16 @@ class SearchTools:
         return f"Search results for '{query}':\n\n" + "\n".join(string)
 
         
+
+#if __name__ == "__main__" :
+    #from dotenv import load_dotenv
+    #load_dotenv()
+    #print(SearchTools.search_internet("How to make a cake"))
+    #print(SearchTools.search_instagram("How to make a cake"))
+
+
+if __name__ == "__main__" :
+    #from dotenv import load_dotenv
+    #load_dotenv()
+    print(SearchTools.open_page("https://www.python.org/"))
+    #print(SearchTools.search_instagram("How to make a cake"))
