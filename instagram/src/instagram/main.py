@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import sys
 import warnings
+import datetime
 
 from datetime import datetime
 
@@ -18,8 +19,10 @@ def run():
     Run the crew.
     """
     inputs = {
-        'topic': 'AI LLMs',
-        'current_year': str(datetime.now().year)
+        'current_date': datetime.now().strftime("%Y-%m-%d"),
+        'current_year': str(datetime.now().year),
+        'instagram_description': input('Enter the page description here'),
+        'topic_of_the_week': input('Enter the topic of the week here: '),
     }
     
     try:

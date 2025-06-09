@@ -19,5 +19,11 @@ test = "instagram.main:test"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.setuptools]
+packages = ["instagram"]
+package-dir = {"" = "instagram/src"}
+
 [tool.crewai]
 type = "crew"
+
+
